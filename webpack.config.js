@@ -7,11 +7,12 @@ module.exports = {
   mode: 'development',
   entry: {
     app: './src/index.js',
-    print: './src/print.js',
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    // 启用热模块替换
+    hot: true,
   },
   output: {
     filename: '[name].bundle.js',
@@ -21,19 +22,26 @@ module.exports = {
   module: {
     rules: [
       {
-        // 加载 css
         test: /\.css$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../',
-              esModule: true,
-            },
-          },
-          'css-loader', // style-loader
+          'style-loader',
+          'css-loader',
         ]
       },
+      // {
+      //   // 加载 css
+      //   test: /\.css$/,
+      //   use: [
+      //     {
+      //       loader: MiniCssExtractPlugin.loader,
+      //       options: {
+      //         publicPath: '../',
+      //         esModule: true,
+      //       },
+      //     },
+      //     'css-loader', // style-loader
+      //   ]
+      // },
       {
         // 加载图片
         test: /\.(png|jpg|svg|gif)$/,
@@ -70,7 +78,7 @@ module.exports = {
       ignoreOrder: false,
     }),
     new HtmlWebpackPlugin({
-      title: 'Development',
+      title: 'Hot Module Replacement',
     }),
     new CleanWebpackPlugin({
       // 运行watch后不移除index.html文件

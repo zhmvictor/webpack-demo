@@ -79,3 +79,13 @@ webpack的index.html不能自动更新引入的入口文件名称，`html-webpac
 - webpack-dev-server 内部使用了 webpack-dev-middleware
 
 - webpack-dev-middleware 本事是一个容器，把webpack处理后的文件传递给一个服务器。需要配合服务器使用。
+
+
+## Hot Module ReplaceMent（HMR）: 热模块替换
+
+- webpack 内置插件
+
+- 局部更新
+
+- 不适用于生产环境
+
