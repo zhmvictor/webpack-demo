@@ -89,3 +89,19 @@ webpack的index.html不能自动更新引入的入口文件名称，`html-webpac
 
 - 不适用于生产环境
 
+### hot-module-replacement api
+
+> accept
+
+```
+module.hot.accept(
+  dependencies, // 字符串或字符串数组，表示引入（import）的依赖文件
+  callback // 回调函数，用于执行将要更新的操作
+)
+```
+
+```
+module.hot.accept(self) // self 是一个函数名，表示自己模块内将要更新的函数
+```
+
+

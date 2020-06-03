@@ -20,6 +20,12 @@ function component() {
 let element = component();
 document.body.appendChild(element);
 
+function update() {
+  console.log('111');
+}
+
+update();
+
 // 热模块替换
 if(module.hot) {
   module.hot.accept('./print.js', () => {
@@ -28,4 +34,10 @@ if(module.hot) {
     element = component();
     document.body.appendChild(element);
   })
+}
+
+
+// module.hot.accept(self)
+if(module.hot) {
+  module.hot.accept(update)
 }
