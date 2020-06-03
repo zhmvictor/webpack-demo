@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: {
     app: './src/index.js',
   },
@@ -15,10 +14,15 @@ module.exports = {
     hot: true,
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    // publicPath: '/',
   },
+  // mode: 'development',
+  // optimization: {
+  //   usedExports: true,
+  // },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -78,7 +82,7 @@ module.exports = {
       ignoreOrder: false,
     }),
     new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement',
+      title: 'Tree Shaking',
     }),
     new CleanWebpackPlugin({
       // 运行watch后不移除index.html文件

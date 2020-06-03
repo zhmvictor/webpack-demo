@@ -105,3 +105,12 @@ module.hot.accept(self) // self 是一个函数名，表示自己模块内将要
 ```
 
 
+## Tree Shaking （摇树）
+
+- 构建时删除未使用的代码（dead-code）
+
+- `package.json`中配置`sideEffects`（副作用）属性，值为 `false`时表示一切代码都没有副作用，构建时可以任意删除未使用的代码；有副作用的代码需要配置`sideEffects`值为数组，在数组中添加有副作用的文件，构建时不会被删除。
+
+- 副作用：对构建代码产生影响的代码，如 polyfill, .css 文件。
+
+
