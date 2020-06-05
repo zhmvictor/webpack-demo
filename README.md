@@ -114,3 +114,44 @@ module.hot.accept(self) // self 是一个函数名，表示自己模块内将要
 - 副作用：对构建代码产生影响的代码，如 polyfill, .css 文件。
 
 
+## Code Splitting （代码分离）
+
+> 代码分离的三种方式
+
+- 入口起点：使用`entry`手动配置不同的入口文件实现代码分离。 缺点：不同chunk引入的公共的模块会被重复打包。
+
+- SplitChunksPlugin
+
+- 动态导入：通过模块调用模块的内联函数实现代码分离。
+
+```
+async function getComponent() {
+  const element = docuemnt.createElement('div');
+  // 动态导入，使用webpackChunkName给chunk命名 
+  const { default: _ } = await import(/* webpackChunkName: 'lodash' */ 'lodash');
+  element.innerHTML = _.join(['Hello', 'Webpack'], ' ');
+  return element;
+}
+
+getComponent().then(component => {
+  document.body.appendChild(component);
+});
+```
+
+> Prefetching（预抓取）/Preloading（预加载）
+
+- prefetch: 资源在将来会被使用
+
+- preload: 资源现在被使用
+
+
+#### prefetch 和 preloading 的差异
+
+- preload chunk 和 parent chunk 并行加载；prefetch chunk 在 parent chunk 加载完成后加载。
+
+- preload chunk 有中等优先级，并且立刻下载；prefetch chunk 在浏览器空闲时下载。
+
+- parent chunk 应该立即请求 preload chunk; parent chunk 会在将来任意时间使用 prefetch chunk。
+
+- 浏览器支持不同。
+
