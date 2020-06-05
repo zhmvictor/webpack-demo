@@ -1,14 +1,10 @@
-import { cube } from './math.js';
-
-function component() {
-  const element  = document.createElement('pre');
-
-  element.innerHTML = [
-    'Hello webpack!',
-    '5 cubes is equal to ' + cube(5)
-  ].join('\n\n');
-
+async function getComponent() {
+  const element = docuemnt.createElement('div');
+  const { default: _ } = await import(/* webpackChunkName: 'lodash' */ 'lodash');
+  element.innerHTML = _.join(['Hello', 'Webpack'], ' ');
   return element;
 }
 
-document.body.appendChild(component());
+getComponent().then(component => {
+  document.body.appendChild(component);
+});
