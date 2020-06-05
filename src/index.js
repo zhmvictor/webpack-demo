@@ -1,20 +1,10 @@
 import _ from 'lodash';
+// import Print from './print.js';
 
 function component() {
   const element = document.createElement('div');
-  const button = document.createElement('button');
-  const br = document.createElement('br');
-
-  button.innerHTML = 'Click me and look at the console!';
-  element.innerHTML = _.join(['Hello', 'Webpack'], ' ');
-  element.appendChild(br);
-  element.appendChild(button);
-
-  button.onclick = e => import(/* webpackChunkName: 'print' */ './print.js').then(module => {
-    const print = module.default;
-    print();
-  });
-
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  // element.onclick = Print.bind(null, 'Hello webpack!');
   return element;
 }
 
