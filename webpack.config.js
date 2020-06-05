@@ -24,7 +24,7 @@ module.exports = {
       cleanStaleWebpackAssets: false,
     }),
     new HtmlWebpackPlugin({
-      title: 'Production',
+      title: 'Lazy Loading',
     }),
     new MiniCssExtractPlugin(),
   ],
